@@ -1,0 +1,48 @@
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    env_file:
+      - ./.env
+    ports:
+      - "80:80"               
+    volumes:
+      - wp_storage:/var/www/html
+    networks:
+      - inception
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - wp_storage:/var/www/html/
+    networks:
+      - inception
+  mariadb:
+    build: ./mariadb
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./.env
+    networks:
+      - inception
+    volumes:
+      - db_storage:/var/lib/mysql/    
+networks:
+  inception:
+    driver: bridge
+volumes:
+  db_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/belguabd/data
+      o: bind
+  wp_storage:
+    driver: local 
+    driver_opts:
+      type: none
+      device: /home/belguabd/data
+      o: bind
