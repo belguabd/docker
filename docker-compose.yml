@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"               
     volumes:
-      - wp_storage:/var/www/html
+      - wp_storage:/var/www/html/
     networks:
       - inception
   wordpress:
