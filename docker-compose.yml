@@ -1,15 +1,15 @@
 services:
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    env_file:
-      - ./.env
-    ports:
-      - "80:80"               
-    volumes:
-      - wp_storage:/var/www/html/
-    networks:
-      - inception
+  # nginx:
+  #   build: ./nginx
+  #   container_name: nginx
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - "80:80"               
+  #   volumes:
+  #     - wp_storage:/var/www/html/
+  #   networks:
+  #     - inception
   wordpress:
     build: ./wordpress
     container_name: wordpress
@@ -21,17 +21,19 @@ services:
       - wp_storage:/var/www/html/
     networks:
       - inception
-  mariadb:
-    build: ./mariadb
-    container_name: mariadb
-    ports:
-      - "3306:3306"
-    env_file:
-      - ./.env
-    networks:
-      - inception
-    volumes:
-      - db_storage:/var/lib/mysql/    
+    # depends_on:
+    #   - mariadb
+  # mariadb:
+  #   build: ./mariadb
+  #   container_name: mariadb
+  #   ports:
+  #     - "3306:3306"
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - inception
+  #   volumes:
+  #     - db_storage:/var/lib/mysql/    
 networks:
   inception:
     driver: bridge
