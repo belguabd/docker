@@ -13,6 +13,8 @@ services:
   wordpress:
     build: ./wordpress
     container_name: wordpress
+    env_file:
+      - ./.env
     ports:
       - "9000:9000"
     volumes:
@@ -35,14 +37,16 @@ networks:
     driver: bridge
 volumes:
   db_storage:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/belguabd/data/db
-      o: bind
   wp_storage:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/belguabd/data/wp
-      o: bind
+  # db_storage:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/belguabd/data/db
+  #     o: bind
+  # wp_storage:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/belguabd/data/wp
+  #     o: bind
