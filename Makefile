@@ -1,5 +1,5 @@
 up:
-#@mkdir -p /home/belguabd/data/db /home/belguabd/data/wp
+	@sudo mkdir -p /home/belguabd/data/db /home/belguabd/data/wp
 	@docker compose up 
 down:
 	@docker compose down --volumes --remove-orphans

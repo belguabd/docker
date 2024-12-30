@@ -1,7 +1,7 @@
 FROM debian:bullseye
-RUN apt update && apt install -y nginx  openssl vim 
+RUN apt update && apt install -y nginx  openssl vim
 
-COPY nginx.conf /etc/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 # COPY index.html /var/www/html
 
 # RUN mkdir -p /etc/nginx/tls/

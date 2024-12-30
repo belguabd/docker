@@ -10,6 +10,8 @@ services:
       - wp_storage:/var/www/html/
     networks:
       - inception
+    depends_on:
+      - wordpress
   wordpress:
     build: ./wordpress
     container_name: wordpress
