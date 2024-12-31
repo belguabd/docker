@@ -1,30 +1,30 @@
 services:
-  # nginx:
-  #   build: ./nginx
-  #   container_name: nginx
-  #   env_file:
-  #     - ./.env
-  #   ports:
-  #     - "80:80"               
-  #   volumes:
-  #     - wp_storage:/var/www/html/
-  #   networks:
-  #     - inception
-  #   depends_on:
-  #     - wordpress
-  # wordpress:
-  #   build: ./wordpress
-  #   container_name: wordpress
-  #   env_file:
-  #     - ./.env
-  #   ports:
-  #     - "9000:9000"
-  #   volumes:
-  #     - wp_storage:/var/www/html/
-  #   networks:
-  #     - inception
-  #   depends_on:
-  #     - mariadb
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    env_file:
+      - ./.env
+    ports:
+      - "80:80"                        
+    volumes:
+      - wp_storage:/var/www/html/
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+  wordpress:
+    build: ./wordpress
+    container_name: wordpress
+    env_file:
+      - ./.env
+    ports:
+      - "9000:9000"
+    volumes:
+      - wp_storage:/var/www/html/
+    networks:
+      - inception
+    depends_on:
+      - mariadb
   mariadb:
     build: ./mariadb
     container_name: mariadb
