@@ -25,6 +25,7 @@ services:
       - inception
     depends_on:
       - mariadb
+      - redis
   mariadb:
     build: ./mariadb
     container_name: mariadb
@@ -35,7 +36,16 @@ services:
     networks:
       - inception
     volumes:
-      - db_storage:/var/lib/mysql/    
+      - db_storage:/var/lib/mysql/
+  redis:
+    build : ./bonus/redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - inception
+  
+    
 networks:
   inception:
     driver: bridge

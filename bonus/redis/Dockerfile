@@ -1,4 +1,6 @@
 FROM debian:bullseye
 RUN apt update && apt install -y  redis-server
+COPY tools/redis.sh /usr/bin/redis.sh
+RUN chmod +x /usr/bin/redis.sh
 EXPOSE 6379
-CMD ["/bin/sh", "-c", "redis-server --protected-mode no > /dev/null 2>&1"]
+CMD ["redis.sh"]
