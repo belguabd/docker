@@ -21,8 +21,18 @@ wp-cli.phar core install --path=/var/www/html \
     --admin_password=$ADMIN_PASS \
     --admin_email=$ADMIN_EMAIL --allow-root
 echo "Setting up permalinks..."
-wp-cli.phar user create $ADMIN_USERNAME $ADMIN_EMAIL --role=$ADMIN_ROLE --user_pass=$ADMIN_PASSWORD --path=/var/www/html --allow-root 1>/dev/null
-wp-cli.phar user create $EDITOR_USERNAME $EDITOR_EMAIL --role=$EDITOR_ROLE --user_pass=$EDITOR_PASSWORD --path=/var/www/html --allow-root 1>/dev/null
+wp-cli.phar user create $ADMIN_USERNAME\
+                        $ADMIN_EMAIL \
+                        --role=$ADMIN_ROLE \
+                        --user_pass=$ADMIN_PASSWORD \
+                        --path=/var/www/html \
+                        --allow-root 1>/dev/null\
+wp-cli.phar user create $EDITOR_USERNAME \
+                        $EDITOR_EMAIL \
+                        --role=$EDITOR_ROLE \
+                        --user_pass=$EDITOR_PASSWORD \
+                        --path=/var/www/html \
+                        --allow-root 1>/dev/null
 
 
 mkdir -p /run/php/
