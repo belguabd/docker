@@ -44,6 +44,19 @@ services:
       - "6379:6379"
     networks:
       - inception
+  ftp:
+    build: ./bonus/ftp
+    container_name: ftp
+    ports:
+      - "10000-10100:10000-10100"
+    networks:
+      - inception
+    env_file:
+      - ./.env
+    volumes:
+      - wp_storage:/var/www/html/
+    # depends_on:
+    #   - wordpress
   
     
 networks:
