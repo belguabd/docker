@@ -55,8 +55,8 @@ services:
       - ./.env
     volumes:
       - wp_storage:/var/www/html/
-    # depends_on:
-    #   - wordpress
+    depends_on:
+      - wordpress
   
     
 networks:

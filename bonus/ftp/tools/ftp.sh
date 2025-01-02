@@ -1,20 +1,15 @@
 #!/bin/bash
-
-mkdir -p /var/run/vsftpd/empty
 echo "Setting up vsftpd..."
-cat << EOF > /etc/vsftpd.conf
-listen=YES
+cat << EOF >> /etc/vsftpd.conf
 write_enable=YES
-pasv_enable=YES
-anonymous_enable=NO
-local_enable=YES
-pasv_min_port=10000
-pasv_max_port=10100
+local_root=$FTP_DIR
 EOF
-
-echo "Creating ftp user..."
-useradd -m $FTP_USER
+mkdir -p /var/run/vsftpd/empty
+adduser --disabled-password --gecos "" "$FTP_USER"
 echo "$FTP_USER:$FTP_PASSWORD" | chpasswd
+echo "Configuring directory: $FTP_DIR"
+mkdir -p "$FTP_DIR"
+chown -R "$FTP_USER:$FTP_USER" "$FTP_DIR"
+chmod -R 755 "$FTP_DIR"
 echo "Starting vsftpd..."
-
 vsftpd /etc/vsftpd.conf
