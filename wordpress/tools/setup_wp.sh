@@ -30,11 +30,12 @@ wp-cli.phar redis enable --path='/var/www/html' --allow-root
 
 echo "Creating users..."
 wp-cli.phar user create $ADMIN_USERNAME\
-                        $ADMIN_EMAIL \
+                        $ADMIN_USER_EMAIL \
                         --role=$ADMIN_ROLE \
                         --user_pass=$ADMIN_PASSWORD \
                         --path=/var/www/html \
                         --allow-root 1>/dev/null\
+
 wp-cli.phar user create $EDITOR_USERNAME \
                         $EDITOR_EMAIL \
                         --role=$EDITOR_ROLE \

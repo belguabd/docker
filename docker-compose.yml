@@ -1,17 +1,19 @@
 services:
-  # nginx:
-  #   build: ./nginx
-  #   container_name: nginx
-  #   env_file:
-  #     - ./.env
-  #   ports:
-  #     - "80:80"                        
-  #   volumes:
-  #     - wp_storage:/var/www/html/
-  #   networks:
-  #     - inception
-  #   depends_on:
-  #     - wordpress
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    env_file:
+      - ./.env
+    ports:
+      - "80:80"                        
+      - "8080:8080"                        
+    volumes:
+      - wp_storage:/var/www/html/
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+      - adminer
   wordpress:
     build: ./wordpress
     container_name: wordpress
@@ -62,6 +64,14 @@ services:
   #   container_name: web
   #   ports:
   #     - "80:80"
+  adminer:
+    build: ./bonus/adminer
+    container_name: adminer
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+    
 networks:
   inception:
     driver: bridge
