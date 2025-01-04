@@ -54,7 +54,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - wp_storage:/var/www/html/
+      - wp_storage:${FTP_DIR}
     depends_on:
       - wordpress
   
