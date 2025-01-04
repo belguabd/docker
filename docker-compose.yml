@@ -1,17 +1,17 @@
 services:
-  nginx:
-    build: ./nginx
-    container_name: nginx
-    env_file:
-      - ./.env
-    ports:
-      - "80:80"                        
-    volumes:
-      - wp_storage:/var/www/html/
-    networks:
-      - inception
-    depends_on:
-      - wordpress
+  # nginx:
+  #   build: ./nginx
+  #   container_name: nginx
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - "80:80"                        
+  #   volumes:
+  #     - wp_storage:/var/www/html/
+  #   networks:
+  #     - inception
+  #   depends_on:
+  #     - wordpress
   wordpress:
     build: ./wordpress
     container_name: wordpress
@@ -57,8 +57,11 @@ services:
       - wp_storage:${FTP_DIR}
     depends_on:
       - wordpress
-  
-    
+  # web:
+  #   build: ./bonus/web
+  #   container_name: web
+  #   ports:
+  #     - "80:80"
 networks:
   inception:
     driver: bridge
