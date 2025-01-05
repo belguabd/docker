@@ -5,8 +5,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - "80:80"                        
-      - "8080:8080"                        
+      - "80:80"                      
     volumes:
       - wp_storage:/var/www/html/
     networks:
@@ -67,6 +66,8 @@ services:
   adminer:
     build: ./bonus/adminer
     container_name: adminer
+    ports:
+      - "8080:8080"
     networks:
       - inception
     depends_on:
