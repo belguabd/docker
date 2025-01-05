@@ -5,7 +5,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - "80:80"                      
+      - "443:443"                      
     volumes:
       - wp_storage:/var/www/html/
     networks:
@@ -58,11 +58,11 @@ services:
       - wp_storage:${FTP_DIR}
     depends_on:
       - wordpress
-  # web:
-  #   build: ./bonus/web
-  #   container_name: web
-  #   ports:
-  #     - "80:80"
+  web:
+    build: ./bonus/web
+    container_name: web
+    ports:
+      - "80:80"
   adminer:
     build: ./bonus/adminer
     container_name: adminer
@@ -72,13 +72,31 @@ services:
       - inception
     depends_on:
       - mariadb
-    
+  portainer:
+    build: ./bonus/portainer
+    container_name: portainer
+    env_file:
+      - ./.env
+    networks:
+      - inception
+    ports:
+      - "9443:9443"
+    volumes:
+      - portainer_data:/data
+    depends_on:
+      - mariadb
+      - wordpress
+      - redis
+      - ftp
+      - adminer
+      - nginx
 networks:
   inception:
     driver: bridge
 volumes:
   db_storage:
   wp_storage:
+  portainer_data:
   # db_storage:
   #   driver: local
   #   driver_opts:
