@@ -12,8 +12,6 @@ echo "Configuring directory: $FTP_DIR"
 mkdir -p "$FTP_DIR"
 chown -R "$FTP_USER:$FTP_USER" "$FTP_DIR"
 chmod -R 755 "$FTP_DIR"
-
 mkdir -p /var/run/vsftpd/empty
-
 echo "Starting vsftpd..."
 vsftpd /etc/vsftpd.conf

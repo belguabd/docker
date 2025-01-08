@@ -59,6 +59,8 @@ services:
       - wp_storage:${FTP_DIR}
     depends_on:
       - wordpress
+      - nginx
+      - mariadb
   web:
     build: ./bonus/web
     container_name: web
@@ -97,14 +99,16 @@ networks:
 volumes:
   portainer_data:
   db_storage:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/belguabd/data/db
-      o: bind 
   wp_storage:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/belguabd/data/wp
-      o: bind
+  # db_storage:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/belguabd/data/db
+  #     o: bind 
+  # wp_storage:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     device: /home/belguabd/data/wp
+  #     o: bind
