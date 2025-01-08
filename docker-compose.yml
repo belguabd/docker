@@ -4,8 +4,9 @@ services:
     container_name: nginx
     env_file:
       - ./.env
+    hostname: ${NGINX_HOST}
     ports:
-      - "443:443"                      
+      - "443:443"             
     volumes:
       - wp_storage:/var/www/html/
     networks:
@@ -94,18 +95,16 @@ networks:
   inception:
     driver: bridge
 volumes:
-  db_storage:
-  wp_storage:
   portainer_data:
-  # db_storage:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/belguabd/data/db
-  #     o: bind
-  # wp_storage:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/belguabd/data/wp
-  #     o: bind
+  db_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/belguabd/data/db
+      o: bind 
+  wp_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/belguabd/data/wp
+      o: bind
