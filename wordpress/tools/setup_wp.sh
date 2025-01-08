@@ -9,8 +9,6 @@ wp plugin install redis-cache --activate --allow-root
 wp config set WP_REDIS_HOST redis --allow-root
 wp config set WP_REDIS_PORT 6379 --raw --allow-root
 wp redis enable --allow-root
-chown -R www-data:www-data /var/www/html
-chmod -R 755 /var/www/html
 mkdir -p /run/php/
 sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
 php-fpm7.4 -F
