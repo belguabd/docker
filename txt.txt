@@ -20,3 +20,7 @@ echo "Connected successfully";
 // Close connection
 $conn->close();
 ?>
+
+
+
+docker exec -it <container_id_or_name> sh -c "apt-get update && apt-get install -y procps"
