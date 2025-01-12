@@ -1,5 +1,5 @@
 #!/bin/bash
-/opt/portainer/portainer &
+/opt/portainer/portainer -H unix:///var/run/docker.sock &
 PORTAINER_PID=$!
 sleep 5
 
