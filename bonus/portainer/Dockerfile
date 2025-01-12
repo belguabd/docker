@@ -1,4 +1,3 @@
-
 FROM debian:bullseye
 RUN apt update && apt install -y wget curl
 RUN wget https://github.com/portainer/portainer/releases/download/2.25.1/portainer-2.25.1-linux-amd64.tar.gz -P /opt/ >> /dev/null 2>&1 

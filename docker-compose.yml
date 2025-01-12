@@ -6,7 +6,7 @@ services:
       - ./.env
     hostname: ${NGINX_HOST}
     ports:
-      - "443:443"             
+      - "443:443"
     volumes:
       - wp_storage:/var/www/html/
     networks:
@@ -51,6 +51,8 @@ services:
     container_name: ftp
     ports:
       - "10000-10100:10000-10100"
+      - "21:21"
+      - "20:20"
     networks:
       - inception
     env_file:
@@ -86,6 +88,7 @@ services:
       - "9443:9443"
     volumes:
       - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - mariadb
       - wordpress
@@ -99,16 +102,14 @@ networks:
 volumes:
   portainer_data:
   db_storage:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/belguabd/data/db
+      o: bind
   wp_storage:
-  # db_storage:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/belguabd/data/db
-  #     o: bind 
-  # wp_storage:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/belguabd/data/wp
-  #     o: bind
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/belguabd/data/wp
+      o: bind
