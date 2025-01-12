@@ -11,5 +11,6 @@ wp config set WP_REDIS_PORT 6379 --raw --allow-root
 wp redis enable --allow-root
 mkdir -p /run/php/
 sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
+chown -R www-data:root /var/www/html    
 chmod -R 777 /var/www/html
 php-fpm7.4 -F

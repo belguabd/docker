@@ -1,6 +1,6 @@
 services:
   nginx:
-    build: ./nginx
+    build: requirements/nginx
     container_name: nginx
     env_file:
       - ./.env
@@ -15,7 +15,7 @@ services:
       - wordpress
       - adminer
   wordpress:
-    build: ./wordpress
+    build: requirements/wordpress
     container_name: wordpress
     env_file:
       - ./.env
@@ -29,7 +29,7 @@ services:
       - mariadb
       - redis
   mariadb:
-    build: ./mariadb
+    build: requirements/mariadb
     container_name: mariadb
     ports:
       - "3306:3306"
@@ -40,14 +40,14 @@ services:
     volumes:
       - db_storage:/var/lib/mysql/
   redis:
-    build : ./bonus/redis
+    build : requirements/bonus/redis
     container_name: redis
     ports:
       - "6379:6379"
     networks:
       - inception
   ftp:
-    build: ./bonus/ftp
+    build: requirements/bonus/ftp
     container_name: ftp
     ports:
       - "10000-10100:10000-10100"
@@ -64,12 +64,12 @@ services:
       - nginx
       - mariadb
   web:
-    build: ./bonus/web
+    build: requirements/bonus/web
     container_name: web
     ports:
       - "80:80"
   adminer:
-    build: ./bonus/adminer
+    build: requirements/bonus/adminer
     container_name: adminer
     ports:
       - "8080:8080"
@@ -78,7 +78,7 @@ services:
     depends_on:
       - mariadb
   portainer:
-    build: ./bonus/portainer
+    build: requirements/bonus/portainer
     container_name: portainer
     env_file:
       - ./.env
