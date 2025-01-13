@@ -46,6 +46,7 @@ services:
     restart: unless-stopped
   redis:
     build : requirements/bonus/redis
+    image: redis:v1.0.0
     container_name: redis
     ports:
       - "6379:6379"
@@ -82,6 +83,7 @@ services:
   adminer:
     build: requirements/bonus/adminer
     container_name: adminer
+    image: adminer:v1.0.0
     ports:
       - "8080:8080"
     networks:
