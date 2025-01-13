@@ -1,10 +1,10 @@
 services:
   nginx:
     build: requirements/nginx
+    image: nginx:v1.0.0
     container_name: nginx
     env_file:
       - ./.env
-    hostname: ${NGINX_HOST}
     ports:
       - "443:443"
     volumes:
@@ -17,6 +17,7 @@ services:
       - adminer
   wordpress:
     build: requirements/wordpress
+    image: wordpress:v1.0.0
     container_name: wordpress
     env_file:
       - ./.env
@@ -32,6 +33,7 @@ services:
     restart: unless-stopped
   mariadb:
     build: requirements/mariadb
+    image: mariadb:v1.0.0
     container_name: mariadb
     ports:
       - "3306:3306"
@@ -52,11 +54,11 @@ services:
     restart: unless-stopped
   ftp:
     build: requirements/bonus/ftp
+    image: ftps:v1.0.0
     container_name: ftp
     ports:
       - "10000-10100:10000-10100"
       - "21:21"
-      - "20:20"
     networks:
       - inception
     env_file:
@@ -70,6 +72,7 @@ services:
     restart: unless-stopped
   web:
     build: requirements/bonus/web
+    image: web:v1.0.0
     container_name: web
     ports:
       - "80:80"
@@ -88,6 +91,7 @@ services:
     restart: unless-stopped
   portainer:
     build: requirements/bonus/portainer
+    image: portainer:v1.0.0
     container_name: portainer
     env_file:
       - ./.env
