@@ -11,6 +11,7 @@ services:
       - wp_storage:/var/www/html/
     networks:
       - inception
+    restart: unless-stopped
     depends_on:
       - wordpress
       - adminer
@@ -28,6 +29,7 @@ services:
     depends_on:
       - mariadb
       - redis
+    restart: unless-stopped
   mariadb:
     build: requirements/mariadb
     container_name: mariadb
@@ -39,6 +41,7 @@ services:
       - inception
     volumes:
       - db_storage:/var/lib/mysql/
+    restart: unless-stopped
   redis:
     build : requirements/bonus/redis
     container_name: redis
@@ -46,6 +49,7 @@ services:
       - "6379:6379"
     networks:
       - inception
+    restart: unless-stopped
   ftp:
     build: requirements/bonus/ftp
     container_name: ftp
@@ -63,11 +67,15 @@ services:
       - wordpress
       - nginx
       - mariadb
+    restart: unless-stopped
   web:
     build: requirements/bonus/web
     container_name: web
     ports:
       - "80:80"
+    networks:
+      - inception
+    restart: unless-stopped
   adminer:
     build: requirements/bonus/adminer
     container_name: adminer
@@ -77,6 +85,7 @@ services:
       - inception
     depends_on:
       - mariadb
+    restart: unless-stopped
   portainer:
     build: requirements/bonus/portainer
     container_name: portainer
@@ -96,6 +105,7 @@ services:
       - ftp
       - adminer
       - nginx
+    restart: unless-stopped
 networks:
   inception:
     driver: bridge
