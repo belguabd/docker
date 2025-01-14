@@ -12,6 +12,5 @@ RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 COPY tools/setup_wp.sh /usr/bin/setup_wp.sh
 RUN chmod +x /usr/bin/setup_wp.sh
-EXPOSE 9000
 WORKDIR /var/www/html
 CMD ["setup_wp.sh"]

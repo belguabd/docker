@@ -14,15 +14,12 @@ services:
     restart: unless-stopped
     depends_on:
       - wordpress
-      - adminer
   wordpress:
     build: requirements/wordpress
     image: wordpress:v1.0.0
     container_name: wordpress
     env_file:
       - ./.env
-    ports:
-      - "9000:9000"
     volumes:
       - wp_storage:/var/www/html/
     networks:
@@ -35,8 +32,6 @@ services:
     build: requirements/mariadb
     image: mariadb:v1.0.0
     container_name: mariadb
-    ports:
-      - "3306:3306"
     env_file:
       - ./.env
     networks:
